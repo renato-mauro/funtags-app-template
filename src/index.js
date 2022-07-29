@@ -10,4 +10,3 @@ function teste()
 }
 
 document.body.append(teste());
-
