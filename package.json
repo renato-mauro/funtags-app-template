@@ -1,0 +1,32 @@
+{
+  "name": "funtags-app-template",
+  "version": "1.0.0",
+  "description": "Application template for funtags with bootstrap",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "server": "rollup -c -w --environment SERVER",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renato-mauro/funtags-app-template.git"
+  },
+  "author": "Renato Campos Mauro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renato-mauro/funtags-app-template/issues"
+  },
+  "homepage": "https://github.com/renato-mauro/funtags-app-template#readme",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "rollup": "^2.77.2",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-serve": "^2.0.0",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.0",
+    "funtags": "^1.0.6"
+  }
+}
