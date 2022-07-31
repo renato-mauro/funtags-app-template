@@ -142,7 +142,7 @@ function mainTemplate() {
     let menuContainer = div();
     let titleContainer = span({"class":"fs-5 fw-semibold"})
     let contentContainer = div(contentAttrs);
-    let mt = main({"class":"d-flex flex-nowrap",mainStyle},
+    let mt = main({"class":"d-flex flex-nowrap",style:mainStyle},
         div(sideBarDivAttrs,
             a(titleAttrs,titleContainer),
             menuContainer
