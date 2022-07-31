@@ -1,5 +1,4 @@
 import ft from 'funtags';
-import { appTitle, menuData } from '../config/menuData';
 
 const { div, ul, li, a, button, span, main, style } = ft.html;
 
@@ -47,10 +46,8 @@ function sideBarMenuCSS() {
     return s;
 }
 
-function sideBarMenu() {
-
+function sideBarMenu(menuData) {
     let root;
-
     function adjustSelected() {
         root.querySelectorAll("a").forEach(element=>{
             element.classList.remove("selected");
@@ -117,28 +114,65 @@ function sideBarMenu() {
     return result;
 }
 
-function sideBar() {
-    const divAttrs = {"class":"flex-shrink-0 p-3 bg-light","style":{"width":"230px","height":"100vh"}};
-    const titleAttrs = {"href":"/","class":"d-flex align-items-center link-dark text-decoration-none"};
-    document.title = appTitle;
-    return div(divAttrs,
-        a(titleAttrs,span({"class":"fs-5 fw-semibold"},appTitle)),
-        div(sideBarMenu())
-    );
-}
-
-function mainTemplate(homePage) {
-    const style = {
+function mainTemplate() {
+    const mainStyle = {
         "height": "100vh",
         "max-height": "100vh",
         "overflow-x": "auto",
         "overflow-y": "hidden"
     };
-    let mt = main({"class":"d-flex flex-nowrap",style},
-        sideBar(),
-        div({"class":"flex-shrink-1 p-4","style":{"overflow-y":"auto"}},homePage)
+    const sideBarDivAttrs = {
+        "class":"flex-shrink-0 p-3 bg-light",
+        "style":{
+            "width":"230px",
+            "height":"100vh"
+        }
+    };
+    const titleAttrs = {
+        "href":"/",
+        "class":"d-flex align-items-center link-dark text-decoration-none"
+    };
+    const contentAttrs = {
+        "class":"flex-shrink-1 p-4",
+        "style":{
+            "overflow-y":"auto"
+        }
+    };
+
+    let menuContainer = div();
+    let titleContainer = span({"class":"fs-5 fw-semibold"})
+    let contentContainer = div(contentAttrs);
+    let mt = main({"class":"d-flex flex-nowrap",mainStyle},
+        div(sideBarDivAttrs,
+            a(titleAttrs,titleContainer),
+            menuContainer
+        ),
+        contentContainer
     );
-    document.body.replaceChildren(mt);
+
+    function title(newTitle) {
+        titleContainer.textContent = newTitle;
+        document.title = newTitle;
+        return this;
+    }
+
+    function menu(menuData) {
+        menuContainer.replaceChildren(sideBarMenu(menuData))
+        return this;
+    }
+
+    function content(element) {
+        contentContainer.replaceChildren(element);
+        return this;
+    }
+
+    function activate() {
+        document.body.replaceChildren(mt);
+        return this;
+    }
+
+    return { title, menu, content, activate }
+
 }
 
 export { mainTemplate };

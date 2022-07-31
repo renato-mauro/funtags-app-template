@@ -1,11 +1,11 @@
 import ft from 'funtags';
 
-export function loremIpsum() 
+export function loremIpsum2() 
 {
     const { div } = ft.html;
     let resp = div();
     resp.innerHTML = `
-        <h1>Lorem Ipsum</h1>
+        <h1>Lorem Ipsum 2</h1>
         <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae nisl sem. Proin vulputate condimentum nunc, facilisis tempor tortor pellentesque vitae. Praesent semper, metus non posuere convallis, est magna tincidunt ante, et viverra nulla ante ac mauris. Sed imperdiet porta nunc ac mattis. Aliquam erat volutpat. Maecenas tristique ultricies lobortis. Sed lorem felis, vestibulum sit amet ligula in, convallis auctor enim. Donec ullamcorper tristique massa sit amet mollis. Nulla facilisi. Nullam suscipit ipsum ipsum, at tempor dui luctus cursus.
         </p>
