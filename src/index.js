@@ -1,7 +1,7 @@
-import { mainTemplate } from './templates/MainTemplate';
-import { loremIpsum } from './templates/LoremIpsum';
-import { loremIpsum2 } from './templates/LoremIpsum2';
-import { page404 } from './templates/404';
+import { mainTemplate } from './lib/MainTemplate';
+import { loremIpsum } from './pages/LoremIpsum';
+import { loremIpsum2 } from './pages/LoremIpsumB';
+import { router } from './lib/Router';
 
 const appTitle = "Título da Aplicação";
 
@@ -52,22 +52,8 @@ let template = mainTemplate()
     .activate()
 ;
 
-function updateHash() {
-    let hash = window.location.hash;
-    if(hash === "#" || hash.length === 0) {
-        hash = "#home-overview";
-    }
-    console.log("Aqui");
-    template.selectItem(hash);
-    if(hash == "#home-overview") {
-        template.content(loremIpsum());
-    } else if(hash == "#home-updates") {
-        template.content(loremIpsum2());
-    } else {
-        template.content(page404());
-    }
-}
-
-
-window.addEventListener("hashchange",updateHash);
-updateHash();
+router(template, "#home-overview", {
+    "#home-overview": loremIpsum,
+    "#home-updates": loremIpsum2,
+    "#home-reports": loremIpsum
+});

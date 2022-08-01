@@ -174,8 +174,11 @@ function mainTemplate() {
         return this;
     }
 
-    function content(element) {
+    function content(element, hashMenu) {
         contentContainer.replaceChildren(element);
+        if(menuElement) {
+            menuElement.selectItem(hashMenu||"#");
+        }
         return this;
     }
 
@@ -184,14 +187,7 @@ function mainTemplate() {
         return this;
     }
 
-    function selectItem(hash) {
-        if(menuElement) {
-            menuElement.selectItem(hash);
-        }
-    }
-
-    return { title, menu, content, activate, selectItem }
-
+    return { title, menu, content, activate }
 }
 
 export { mainTemplate };
