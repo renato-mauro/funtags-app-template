@@ -23,7 +23,7 @@ export default argv => {
         output: {
             file: "dist/js/funtags-app.min.js",
             format: "umd",
-            plugins: [terser()]
+//            plugins: [terser()]
         },
         plugins
     }

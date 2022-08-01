@@ -41,7 +41,7 @@ function sideBarMenuCSS() {
       
         .btn-toggle-nav a.selected {
             background-color: #999;
-        }      
+        }
     `;
     return s;
 }
@@ -111,6 +111,17 @@ function sideBarMenu(menuData) {
     let shadow = result.attachShadow({mode:'open'});
     shadow.appendChild(sideBarMenuCSS());
     shadow.appendChild(root);
+
+    result.selectItem = function(hash) {
+        root.querySelectorAll("a").forEach(e=>{
+            if(e.getAttribute("href")==hash) {
+                e.classList.add("selected");
+            } else {
+                e.classList.remove("selected");
+            }
+        });
+    }
+
     return result;
 }
 
@@ -142,6 +153,7 @@ function mainTemplate() {
     let menuContainer = div();
     let titleContainer = span({"class":"fs-5 fw-semibold"})
     let contentContainer = div(contentAttrs);
+    let menuElement = null;
     let mt = main({"class":"d-flex flex-nowrap",style:mainStyle},
         div(sideBarDivAttrs,
             a(titleAttrs,titleContainer),
@@ -157,7 +169,8 @@ function mainTemplate() {
     }
 
     function menu(menuData) {
-        menuContainer.replaceChildren(sideBarMenu(menuData))
+        menuElement = sideBarMenu(menuData);
+        menuContainer.replaceChildren(menuElement)
         return this;
     }
 
@@ -171,7 +184,13 @@ function mainTemplate() {
         return this;
     }
 
-    return { title, menu, content, activate }
+    function selectItem(hash) {
+        if(menuElement) {
+            menuElement.selectItem(hash);
+        }
+    }
+
+    return { title, menu, content, activate, selectItem }
 
 }
 

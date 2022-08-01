@@ -57,7 +57,8 @@ function updateHash() {
     if(hash === "#" || hash.length === 0) {
         hash = "#home-overview";
     }
-//    template.select(hash);
+    console.log("Aqui");
+    template.selectItem(hash);
     if(hash == "#home-overview") {
         template.content(loremIpsum());
     } else if(hash == "#home-updates") {
@@ -67,6 +68,6 @@ function updateHash() {
     }
 }
 
-updateHash();
 
 window.addEventListener("hashchange",updateHash);
+updateHash();
