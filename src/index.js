@@ -2,6 +2,7 @@ import { mainTemplate } from './lib/MainTemplate';
 import { loremIpsum } from './pages/LoremIpsum';
 import { loremIpsum2 } from './pages/LoremIpsumB';
 import { router } from './lib/Router';
+import { testeVerticalBox } from './pages/TesteVerticalBox';
 
 const appTitle = "Título da Aplicação";
 
@@ -55,5 +56,6 @@ let template = mainTemplate()
 router(template, "#home-overview", {
     "#home-overview": loremIpsum,
     "#home-updates": loremIpsum2,
-    "#home-reports": loremIpsum
+    "#home-reports": loremIpsum,
+    "#dashbord-overview": testeVerticalBox
 });
