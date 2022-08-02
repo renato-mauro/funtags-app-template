@@ -1,10 +1,13 @@
 import ft from "funtags";
 
-function verticalSplitBox(...args) {
+function horizontalFlexBox(...args) {
     const { div } = ft.html;
-    return div({"class":"d-flex h-100"},
-        ...args.map(e => div({"class":"mh-100 flex-fill"},e))
-    )
+    return div({"class":"d-flex vh-100"},args);
 }
 
-export { verticalSplitBox }
+function verticalFlexBox(...args) {
+    const { div } = ft.html;
+    return div({"class":"d-flex vh-100 flex-column"},args);
+}
+
+export { horizontalFlexBox, verticalFlexBox }
