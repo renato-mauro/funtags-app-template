@@ -18,7 +18,7 @@ function testeVerticalBox()
             div({style:{"overflow-y":"auto"}},
                 loremIpsum()
             ),
-            div({class:"p-2", style:{"overflow-y":"auto"}},
+            div({style:{"overflow-y":"auto"}},
                 loremIpsum()
             ),
             div({style:{"overflow-y":"auto"}},
