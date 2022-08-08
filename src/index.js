@@ -4,8 +4,6 @@ import { loremIpsum2 } from './pages/LoremIpsumB';
 import { router } from './lib/Router';
 import { testeVerticalBox } from './pages/TesteVerticalBox';
 
-const appTitle = "Título da Aplicação";
-
 const menuData = [{
     text: "Home",
     open: true,
@@ -47,15 +45,17 @@ const menuData = [{
     ]
 }];
 
-let template = mainTemplate()
-    .title(appTitle)
-    .menu(menuData)
-    .activate()
-;
+mainTemplate(
 
-router(template, "#home-overview", {
-    "#home-overview": loremIpsum,
-    "#home-updates": loremIpsum2,
-    "#home-reports": loremIpsum,
-    "#dashbord-overview": testeVerticalBox
-});
+    "Título da Aplicação",
+
+    menuData,
+
+    router("#home-overview", {
+        "#home-overview": loremIpsum,
+        "#home-updates": loremIpsum2,
+        "#home-reports": loremIpsum,
+        "#dashbord-overview": testeVerticalBox
+    })
+
+);

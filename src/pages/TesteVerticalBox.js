@@ -1,29 +1,15 @@
 import ft from "funtags";
-import { verticalFlexBox, horizontalFlexBox } from "../lib/components/verticalSplitBox"
+import { verticalFlexBox, horizontalFlexBox } from "../lib/components/SplitBox"
 import { loremIpsum } from "./LoremIpsum";
 
-function testeVerticalBox()
+function testeVerticalBox() 
 {
-    const { div } = ft.html;
     return horizontalFlexBox(
+        loremIpsum(),
         verticalFlexBox(
-            div({style:{"overflow-y":"auto"}},
-                loremIpsum()
-            ),
-            div({style:{"overflow-y":"auto"}},
-                loremIpsum()
-            ),
-        ),
-        verticalFlexBox(
-            div({style:{"overflow-y":"auto"}},
-                loremIpsum()
-            ),
-            div({style:{"overflow-y":"auto"}},
-                loremIpsum()
-            ),
-            div({style:{"overflow-y":"auto"}},
-                loremIpsum()
-            ),
+                loremIpsum(),
+                loremIpsum(),
+                loremIpsum(),
         )
     );
 }
