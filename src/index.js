@@ -3,6 +3,9 @@ import { loremIpsum } from './pages/LoremIpsum';
 import { loremIpsum2 } from './pages/LoremIpsumB';
 import { router } from './lib/Router';
 import { testeVerticalBox } from './pages/TesteVerticalBox';
+import { formTeste } from './pages/FormTeste';
+import { formTeste2 } from './pages/FormTeste2';
+import { uxSus } from './pages/ux-sus';
 
 const menuData = [{
     text: "Home",
@@ -54,8 +57,10 @@ mainTemplate(
     router("#home-overview", {
         "#home-overview": loremIpsum,
         "#home-updates": loremIpsum2,
-        "#home-reports": loremIpsum,
-        "#dashbord-overview": testeVerticalBox
+        "#home-reports": formTeste,
+        "#dashbord-overview": testeVerticalBox,
+        "#dashboard-weekly": formTeste2,
+        "#dashboard-monthly": uxSus
     })
 
 );

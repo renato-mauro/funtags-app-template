@@ -7,9 +7,9 @@ function testeVerticalBox()
     return horizontalFlexBox(
         loremIpsum(),
         verticalFlexBox(
-                loremIpsum(),
-                loremIpsum(),
-                loremIpsum(),
+            loremIpsum(),
+            loremIpsum(),
+            loremIpsum(),
         )
     );
 }
