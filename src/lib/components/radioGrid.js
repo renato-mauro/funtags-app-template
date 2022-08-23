@@ -1,20 +1,22 @@
 import ft from 'funtags';
+import { generateName } from './utils';
 
-function radioGrid(name, data, questions, answers) {
+const SYMBOL_INDEX = Symbol();
 
+function radioGrid(name, questions, answers) {
+
+    const radioNames = questions.map(_=>generateName());
     const { table, thead, tbody, th, tr, td, input } = ft.html;
-
     const hstyle = { class: `col-${12-answers.length}` };
     const qstyle = { class: "col-1 text-center" };
 
-    function oninput(ev,i,value) {
-        if(!(data[name] instanceof Array)) {
-            data[name] = [];
-        }
-        data[name][i] = value;
+    function radio(i, value) {
+        let resp = input({class:"form-check-input",type:"radio",name:radioNames[i],value});
+        resp[SYMBOL_INDEX] = i;
+        return resp;
     }
 
-    return table({class:"table table-striped"},
+    let resp = table({class:"table table-striped"},
         thead(
             tr(
                 th(),
@@ -26,13 +28,39 @@ function radioGrid(name, data, questions, answers) {
                 tr(
                     td(hstyle,q),
                     answers.map(([value,_])=>
-                        td(qstyle,input({class:"form-check-input",type:"radio",name:`${name}_${i}`,oninput:(ev)=>oninput(ev,i,value)}))
+                        td(qstyle,radio(i,value))
                     )
                 )
             )
         )
-    )
+    );
+
+    Object.defineProperty(resp,"value",{
+        get() {
+            let a = [];
+            resp.querySelectorAll("input:checked").forEach(rd => {
+                a[rd[SYMBOL_INDEX]] = rd.value; 
+            });
+            return a;
+        },
+        set(newValue) {
+            resp.querySelectorAll("input").forEach(rd => {
+                if(newValue[rd[SYMBOL_INDEX]] == rd.value) {
+                    rd.setAttribute("checked","checked");
+                } else {
+                    rd.removeAttribute("checked");
+                }
+            });
+        }
+    });
+
+    Object.defineProperty(resp,"name",{
+        get() {
+            return name;
+        }
+    });
+
+    return resp;
 }
 
 export { radioGrid };
-

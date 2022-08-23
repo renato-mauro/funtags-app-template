@@ -1,5 +1,6 @@
 import ft from 'funtags';
 import { radioGrid } from '../lib/components/radioGrid';
+import { elementData } from '../lib/components/utils';
 
 let questions = [
     "Eu acho que gostaria de usar esse sistema com frequência.",
@@ -22,21 +23,24 @@ let answers = [
     [ 5, "Concordo Totalmente 5" ],
 ];
 
-let name = "sus";
-let data = {};
 
 function uxSus() {
 
-    const { div } = ft.html;
+    let data = { sus: [1,2,3,3,2,3,4,5,1,2], obs: "RENATO" };
 
+    const { div, textarea } = ft.html;
+    
     function oninput() {
         console.log(data);
     }
 
-    return div(
-        {class:"container",oninput},
-        radioGrid("sus",data,questions,answers)
-    )
+    return elementData({data,oninput},
+        div(
+            {class:"container"},
+            radioGrid("sus", questions, answers),
+            textarea({name:"obs",rows:6,cols:80}),
+        )
+    );
 }
 
 export { uxSus };
